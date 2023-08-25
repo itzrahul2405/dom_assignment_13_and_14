@@ -70,18 +70,46 @@ function appendInList(e){
     let delBtn = document.createElement('input')
     delBtn.type = 'button';
     delBtn.value = 'DELETE';
-    delBtn.style.background = 'lightblue';
+    delBtn.style.background = 'red';
     
-    delBtn.onclick = (obj) => {
-        localStorage.removeItem(obj.mail)
+    delBtn.onclick = () => {
+        localStorage.removeItem(mail)
         document.getElementById('list').removeChild(new_ele);
     }
+
+
+
+
+    // creating edit button
+    editBtn = document.createElement('input');
+    editBtn.type = 'button';
+    editBtn.value = 'EDIT';
+    editBtn.style.background = 'lightblue';
+
+    editBtn.onclick = () =>{
+
+        info = JSON.parse(localStorage.getItem(mail))
+
+        document.getElementById('name').value = info.name;
+        document.getElementById('mail').value = info.mail;
+        document.getElementById('phone').value = info.phone;
+        document.getElementById('date').value = info.date;
+        document.getElementById('time').value = info.time;
+
+        localStorage.removeItem(mail)
+        document.getElementById('list').removeChild(new_ele);
+
+
+    }
+
+
    
 
     // new_ele.insertBefore(delNode, new_ele.lastChild.nextSibling)
 
     new_ele.appendChild(textNode)
     new_ele.appendChild(delBtn);
+    new_ele.appendChild(editBtn);
     document.getElementById('list').appendChild(new_ele);
 
 
@@ -113,3 +141,4 @@ function appendInList(e){
 
 
 
+//  in assignment 13 i forgot to remove item from localstorage on github code but now it is corrected in delBtn.onclick = ()  this bracket should be empty
